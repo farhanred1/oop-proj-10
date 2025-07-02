@@ -1,0 +1,6 @@
+Freight ID,City,Time,Cargo ID,City,Time
+F01,London,700,C01,London,700
+F04,Bangkok,1200,C04,Bangkok,1200
+F07,London,1500,C07,London,1500
+F09,Bangkok,1700,C09,Bangkok,1700
+F10,Sydney,1800,C10,Sydney,1800

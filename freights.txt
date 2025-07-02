@@ -1,0 +1,10 @@
+F01,London,0700
+F02,Paris,0900
+F03,New York,1100
+F04,Bangkok,1200
+F05,Sydney,1300
+F06,Tokyo,1400
+F07,London,1500
+F08,Paris,1600
+F09,Bangkok,1700
+F10,Sydney,1800

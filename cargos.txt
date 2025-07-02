@@ -1,0 +1,10 @@
+C01,London,0700
+C02,Paris,0930
+C03,New York,1130
+C04,Bangkok,1200
+C05,Sydney,1330
+C06,Tokyo,1430
+C07,London,1500
+C08,Paris,1630
+C09,Bangkok,1700
+C10,Sydney,1800
