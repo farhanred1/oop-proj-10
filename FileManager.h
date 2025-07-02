@@ -4,13 +4,26 @@
 #include "Cargo.h"
 #include "ScheduleManager.h"
 
+#include <string>
+#include <vector>
+
 class FileManager {
 public:
-    // Load Freight data from a CSV file
-    vector<Freight> loadFreights(const string& path);
+    /**
+     * Loads a CSV file and returns its contents as a vector of string vectors.
+     * Each inner vector represents a row of cells.
+     * No type conversion is done; all values are strings.
+     *
+     * @param filepath Path to the CSV file.
+     * @return Vector of rows, each row is a vector of strings.
+     */
+    static std::vector<std::vector<std::string>> loadCSV(const std::string& filepath);
 
-    // Load Cargo data from a CSV file
-    vector<Cargo> loadCargos(const string& path);
-
-    void saveSchedules(const ScheduleManager& manager, const string& path);
+    /**
+     * Saves data to a CSV file. Each row is a vector of strings.
+     *
+     * @param filepath Path where the CSV will be saved.
+     * @param data A vector of rows, where each row is a vector of strings.
+     */
+    static void saveCSV(const std::string& filepath, const std::vector<std::vector<std::string>>& data);
 };

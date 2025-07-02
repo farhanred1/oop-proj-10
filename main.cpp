@@ -27,35 +27,36 @@ int main() {
 
         switch (choice) {
         case 1: {
-            cout << "Enter folder path (e.g., .): ";
-            getline(cin, folderPath);
+            std::cout << "Enter folder path (e.g., .): ";
+            std::getline(std::cin, folderPath);
 
-            // Check if the folder exists (simple check here)
             if (folderPath.empty()) {
-                cout << "Error: Folder path is empty!" << endl;
+                std::cout << "Error: Folder path is empty!" << std::endl;
                 break;
             }
-            freightManager = FreightManager(); // reset
-            cargoManager = CargoManager();     // reset
-            vector<Freight> freights = fileManager.loadFreights(folderPath + "/freights.txt");
-            vector<Cargo> cargos = fileManager.loadCargos(folderPath + "/cargos.txt");
 
-            // Add records to managers
-            if (!freights.empty()) {
-                for (const auto& f : freights) freightManager.add(f);
-                cout << "Loaded " << freights.size() << " Freights.\n";
-            }
-            else {
-                cout << "No freights found or failed to load freights.\n";
-            }
+            // Reset managers
+            freightManager = FreightManager();
+            cargoManager = CargoManager();
 
-            if (!cargos.empty()) {
-                for (const auto& c : cargos) cargoManager.add(c);
-                cout << "Loaded " << cargos.size() << " Cargos.\n";
-            }
-            else {
-                cout << "No cargos found or failed to load cargos.\n";
-            }
+            // Load data via manager methods
+            freightManager.loadFromCSV(folderPath + "/freights.txt");
+            cargoManager.loadFromCSV(folderPath + "/cargos.txt");
+
+            // Display how many were loaded
+            int fCount = freightManager.getSize();
+            int cCount = cargoManager.getSize();
+
+            if (fCount > 0)
+                std::cout << "Loaded " << fCount << " Freights.\n";
+            else
+                std::cout << "No freights found or failed to load freights.\n";
+
+            if (cCount > 0)
+                std::cout << "Loaded " << cCount << " Cargos.\n";
+            else
+                std::cout << "No cargos found or failed to load cargos.\n";
+
             break;
         }
 
@@ -292,10 +293,11 @@ int main() {
         }
 
         case 6: {
-            string outputPath;
-            cout << "Enter file path to save schedules (e.g., schedules.txt): ";
-            getline(cin >> ws, outputPath);
-            fileManager.saveSchedules(scheduleManager, outputPath);
+            std::string outputPath;
+            std::cout << "Enter file path to save schedules (e.g., schedules.csv): ";
+            std::getline(std::cin >> std::ws, outputPath);
+            scheduleManager.exportToCSV(outputPath);
+            std::cout << "Schedules exported successfully to " << outputPath << "\n";
             break;
         }
 

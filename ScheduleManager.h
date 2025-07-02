@@ -9,11 +9,18 @@ private:
     vector<Schedule> scheduleList;
 
 public:
-    // Constructor declaration
+    // Constructor
     ScheduleManager();
 
-    // Generate and manage schedules
+    // Generate schedules by matching freight and cargo
     void generateSchedules(FreightManager& freightManager, CargoManager& cargoManager);
+
+    // Get a schedule by its index
     Schedule getByIndex(int index) const;
+
+    // Get total number of schedules
     int getSize() const;
+
+    // Export all schedules to a CSV file
+    void exportToCSV(const std::string& path) const;
 };

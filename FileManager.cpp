@@ -1,84 +1,46 @@
-// FileManager.cpp
 #include "FileManager.h"
 #include <fstream>
 #include <sstream>
 
-vector<Freight> FileManager::loadFreights(const string& path) {
-    vector<Freight> freights;
-    ifstream file(path);
+std::vector<std::vector<std::string>> FileManager::loadCSV(const std::string& filepath) {
+    std::vector<std::vector<std::string>> rows;
+    std::ifstream file(filepath);
 
     if (!file.is_open()) {
-        cerr << "Could not open the file!" << endl;
-        return freights;
+        // Do not print. Let caller handle failure.
+        return rows;
     }
 
-    string line;
+    std::string line;
     while (getline(file, line)) {
-        stringstream ss(line);
-        string id, city;
-        int time;
+        std::vector<std::string> row;
+        std::stringstream ss(line);
+        std::string cell;
 
-        getline(ss, id, ',');  // Extract the Freight ID
-        getline(ss, city, ',');  // Extract the City (refuel stop)
-        ss >> time;  // Extract the refuel time
+        while (getline(ss, cell, ',')) {
+            row.push_back(cell);
+        }
 
-        // Create Freight object and add to the list
-        freights.push_back(Freight(id, city, time));
+        rows.push_back(row);
     }
 
     file.close();
-    cout << "Freight data loaded successfully.\n";
-    return freights;
+    return rows;
 }
 
-vector<Cargo> FileManager::loadCargos(const string& path) {
-    vector<Cargo> cargos;
-    ifstream file(path);
+void FileManager::saveCSV(const std::string& filepath, const std::vector<std::vector<std::string>>& data) {
+    std::ofstream file(filepath);
 
-    if (!file.is_open()) {
-        cerr << "Could not open the file!" << endl;
-        return cargos;
-    }
+    if (!file.is_open()) return;
 
-    string line;
-    while (getline(file, line)) {
-        stringstream ss(line);
-        string id, city;
-        int time;
-
-        getline(ss, id, ',');  // Extract the Cargo ID
-        getline(ss, city, ',');  // Extract the Destination City
-        ss >> time;  // Extract the required time to reach destination
-
-        // Create Cargo object and add to the list
-        cargos.push_back(Cargo(id, city, time));
+    for (const auto& row : data) {
+        for (size_t i = 0; i < row.size(); ++i) {
+            file << row[i];
+            if (i < row.size() - 1)
+                file << ",";
+        }
+        file << "\n";
     }
 
     file.close();
-    cout << "Cargo data loaded successfully.\n";
-    return cargos;
-}
-
-void FileManager::saveSchedules(const ScheduleManager& manager, const string& filepath) {
-    ofstream outFile(filepath);
-
-    if (!outFile.is_open()) {
-        cerr << "Error: Could not open file " << filepath << " for writing.\n";
-        return;
-    }
-
-    outFile << "Freight ID,City,Time,Cargo ID,City,Time\n";
-    int total = manager.getSize();
-    for (int i = 0; i < total; ++i) {
-        Schedule schedule = manager.getByIndex(i);
-        outFile << schedule.getFreight().getID() << ","
-            << schedule.getFreight().getCity() << ","
-            << schedule.getFreight().getTime() << ","
-            << schedule.getCargo().getID() << ","
-            << schedule.getCargo().getCity() << ","
-            << schedule.getCargo().getTime() << "\n";
-    }
-
-    outFile.close();
-    cout << "Schedules saved to " << filepath << " successfully.\n";
 }
