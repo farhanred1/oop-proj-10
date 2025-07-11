@@ -13,6 +13,7 @@ private:
 public:
     // Constructor declaration
     TransportUnit(const string& id, const string& city, int time);
+    virtual ~TransportUnit() {}
 
     // Getter methods
     string getID() const;
