@@ -286,9 +286,9 @@ int main() {
 
         case 5: {
             cout << "\n--- Unmatched Freights ---\n";
-            freightManager.printUnmatched();
+            scheduleManager.displayUnmatchedFreights();
             cout << "\n--- Unmatched Cargos ---\n";
-            cargoManager.printUnmatched();
+            scheduleManager.displayUnmatchedCargos();
             break;
         }
 

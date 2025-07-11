@@ -5,38 +5,43 @@
 ScheduleManager::ScheduleManager() {}
 
 void ScheduleManager::generateSchedules(FreightManager& freightManager, CargoManager& cargoManager) {
+    // Clear previous results
+    scheduleList.clear();
+    unmatchedFreights.clear();
+    unmatchedCargos.clear();
+
+    matchFreightAndCargo(freightManager, cargoManager);
+}
+
+void ScheduleManager::matchFreightAndCargo(FreightManager& freightManager, CargoManager& cargoManager) {
+    std::vector<bool> cargoMatched(cargoManager.getSize(), false);
+
     for (int i = 0; i < freightManager.getSize(); ++i) {
         Freight f = freightManager.getByIndex(i);
         bool matched = false;
 
         for (int j = 0; j < cargoManager.getSize(); ++j) {
+            if (cargoMatched[j]) continue;
+
             Cargo c = cargoManager.getByIndex(j);
+
             if (f.getCity() == c.getCity() && f.getTime() == c.getTime()) {
-                scheduleList.push_back(Schedule(f, c));
+                scheduleList.emplace_back(f, c);
+                cargoMatched[j] = true;
                 matched = true;
-                break;  // One-to-one match
+                break;  // one-to-one match
             }
         }
 
         if (!matched) {
-            freightManager.addUnmatched(f);
+            unmatchedFreights.push_back(f);
         }
     }
 
-    // Track unmatched cargos
+    // Any remaining unmatched cargo
     for (int j = 0; j < cargoManager.getSize(); ++j) {
-        Cargo c = cargoManager.getByIndex(j);
-        bool matched = false;
-
-        for (const Schedule& s : scheduleList) {
-            if (s.getCargo().getID() == c.getID()) {
-                matched = true;
-                break;
-            }
-        }
-
-        if (!matched) {
-            cargoManager.addUnmatched(c);
+        if (!cargoMatched[j]) {
+            unmatchedCargos.push_back(cargoManager.getByIndex(j));
         }
     }
 }
@@ -65,4 +70,26 @@ void ScheduleManager::exportToCSV(const std::string& path) const {
     }
 
     FileManager::saveCSV(path, rows);
+}
+
+const std::vector<Freight>& ScheduleManager::getUnmatchedFreights() const {
+    return unmatchedFreights;
+}
+
+const std::vector<Cargo>& ScheduleManager::getUnmatchedCargos() const {
+    return unmatchedCargos;
+}
+
+void ScheduleManager::displayUnmatchedFreights() const {
+    std::cout << "Unmatched Freights:\n";
+    for (const auto& f : unmatchedFreights) {
+        f.displayInfo();
+    }
+}
+
+void ScheduleManager::displayUnmatchedCargos() const {
+    std::cout << "Unmatched Cargos:\n";
+    for (const auto& c : unmatchedCargos) {
+        c.displayInfo();
+    }
 }

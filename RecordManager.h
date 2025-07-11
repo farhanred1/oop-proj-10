@@ -2,15 +2,11 @@
 #pragma once
 #include <vector>
 #include <string>
-#include <iostream>
-
-using namespace std;
 
 template<typename T>
 class RecordManager {
 protected:
-    vector<T> records;
-    vector<T> unmatchedRecords;
+    std::vector<T> records;
 
 public:
     virtual ~RecordManager() = default;
@@ -19,18 +15,18 @@ public:
         records.push_back(record);
     }
 
-    virtual void edit(const string& id, const T& record) {
+    virtual void edit(const std::string& id, const T& updatedRecord) {
         for (auto& r : records) {
             if (r.getID() == id) {
-                r = record;
+                r = updatedRecord;
                 return;
             }
         }
     }
 
-    virtual void remove(const string& id) {
+    virtual void remove(const std::string& id) {
         records.erase(
-            remove_if(records.begin(), records.end(),
+            std::remove_if(records.begin(), records.end(),
                 [&id](const T& r) { return r.getID() == id; }),
             records.end()
         );
@@ -40,7 +36,6 @@ public:
         return records.at(index);
     }
 
-    // Check if a record exists by ID
     virtual bool existsByID(const std::string& id) const {
         for (const auto& r : records) {
             if (r.getID() == id) {
@@ -54,13 +49,4 @@ public:
         return static_cast<int>(records.size());
     }
 
-    virtual void addUnmatched(const T& record) {
-        unmatchedRecords.push_back(record);
-    }
-
-    virtual void printUnmatched() const {
-        for (const auto& r : unmatchedRecords) {
-            r.displayInfo();
-        }
-    }
 };

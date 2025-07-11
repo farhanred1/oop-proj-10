@@ -7,6 +7,9 @@
 class ScheduleManager {
 private:
     vector<Schedule> scheduleList;
+    vector<Freight> unmatchedFreights;
+    vector<Cargo> unmatchedCargos;
+    void matchFreightAndCargo(FreightManager& freightManager, CargoManager& cargoManager);
 
 public:
     // Constructor
@@ -23,4 +26,10 @@ public:
 
     // Export all schedules to a CSV file
     void exportToCSV(const std::string& path) const;
+
+    // NEED TO CHECK
+    const std::vector<Freight>& getUnmatchedFreights() const;
+    const std::vector<Cargo>& getUnmatchedCargos() const;
+    void displayUnmatchedFreights() const;
+    void displayUnmatchedCargos() const;
 };
