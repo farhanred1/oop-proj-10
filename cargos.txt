@@ -1,10 +1,18 @@
-C01,London,0700
-C02,Paris,0930
-C03,New York,1130
-C04,Bangkok,1200
-C05,Sydney,1330
-C06,Tokyo,1430
-C07,London,1500
-C08,Paris,1630
-C09,Bangkok,1700
-C10,Sydney,1800
+C01,London,0700,1
+C02,Paris,0930,2
+C03,New York,1130,1
+C04,Bangkok,1200,3
+C05,Sydney,1330,1
+C06,Tokyo,1430,4
+C07,London,1500,5
+C08,Paris,1630,1
+C09,Bangkok,1700,2
+C10,Sydney,1800,1
+C11,London,0730,1
+C12,Paris,1320,5
+C13,New York,1115,2
+C14,Bangkok,1220,1
+C15,Sydney,1900,6
+C16,Tokyo,1450,1
+C17,London,1930,10
+C18,Paris,1710,1

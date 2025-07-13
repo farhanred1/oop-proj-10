@@ -90,33 +90,41 @@ int main() {
             cout << "4. Add Cargo    5. Edit Cargo    6. Delete Cargo\n";
             cout << "Enter your choice: ";
             cin >> subChoice;
-            cin.ignore(); // clear the buffer
+            cin.ignore(); // clear buffer
 
             switch (subChoice) {
-            case 1: {
-                string id, city;
+            case 1: { // Add Freight
+                string id, city, type;
                 int time;
 
                 while (true) {
                     cout << "Enter Freight ID: ";
                     getline(cin, id);
 
-                    // Check if Freight ID already exists
                     if (freightManager.existsByID(id)) {
-                        cout << "Freight ID already exists! Please enter a new ID." << endl;
+                        cout << "Freight ID already exists! Please enter a new ID.\n";
                     }
                     else {
-                        cout << "Enter City: "; getline(cin, city);
-                        cout << "Enter Time (e.g. 0930): "; cin >> time;
+                        cout << "Enter City: ";
+                        getline(cin, city);
 
-                        // Validate time format (basic check for a 4-digit number)
+                        cout << "Enter Time (e.g. 0930): ";
+                        cin >> time;
+
+                        cin.ignore();
+                        cout << "Enter Type (MiniMover/CargoCruiser/MegaCarrier): ";
+                        getline(cin, type);
+
                         if (time < 0 || time > 2359) {
-                            cout << "Invalid time format!" << endl;
+                            cout << "Invalid time format!\n";
+                        }
+                        else if (type != "MiniMover" && type != "CargoCruiser" && type != "MegaCarrier") {
+                            cout << "Invalid type!\n";
                         }
                         else {
-                            freightManager.add(Freight(id, city, time));
+                            freightManager.add(Freight(id, city, time, type));
                             cout << "Freight added successfully.\n";
-                            break;  // Exit the loop after successfully adding the freight
+                            break;
                         }
                     }
                 }
@@ -125,82 +133,96 @@ int main() {
 
             case 2: { // Edit Freight
                 string id;
-                cout << "Enter Freight ID to edit: "; getline(cin, id);
+                cout << "Enter Freight ID to edit: ";
+                getline(cin, id);
 
-                // Loop until a valid Freight ID is entered
                 while (!freightManager.existsByID(id)) {
                     cout << "Invalid Freight ID! Please enter a valid Freight ID: ";
                     getline(cin, id);
                 }
 
-                // Proceed with editing
-                string newCity;
+                string newCity, newType;
                 int newTime;
-                cout << "Enter New City: "; getline(cin, newCity);
-                cout << "Enter New Time: "; cin >> newTime;
 
-                // Validate time format (basic check for a 4-digit number)
+                cout << "Enter New City: ";
+                getline(cin, newCity);
+
+                cout << "Enter New Time: ";
+                cin >> newTime;
+
+                cin.ignore();
+                cout << "Enter New Type (MiniMover/CargoCruiser/MegaCarrier): ";
+                getline(cin, newType);
+
                 if (newTime < 0 || newTime > 2359) {
-                    cout << "Invalid time format!" << endl;
+                    cout << "Invalid time format!\n";
+                }
+                else if (newType != "MiniMover" && newType != "CargoCruiser" && newType != "MegaCarrier") {
+                    cout << "Invalid type!\n";
                 }
                 else {
-                    freightManager.edit(id, Freight(id, newCity, newTime));
+                    freightManager.edit(id, Freight(id, newCity, newTime, newType));
                     cout << "Freight edited successfully.\n";
                 }
                 break;
             }
 
-
             case 3: { // Delete Freight
                 string id;
-                cout << "Enter Freight ID to delete: "; getline(cin, id);
+                cout << "Enter Freight ID to delete: ";
+                getline(cin, id);
 
-                // Loop until a valid Freight ID is entered
                 while (!freightManager.existsByID(id)) {
                     cout << "Invalid Freight ID! Please enter a valid Freight ID: ";
                     getline(cin, id);
                 }
 
-                // Confirm deletion
                 char confirm;
                 cout << "Are you sure you want to delete Freight ID " << id << "? (y/n): ";
                 cin >> confirm;
 
                 if (confirm == 'y' || confirm == 'Y') {
                     freightManager.remove(id);
-                    cout << "Freight " << id << " deleted successfully!" << endl;
+                    cout << "Freight " << id << " deleted successfully!\n";
                 }
                 else {
-                    cout << "Deletion cancelled." << endl;
+                    cout << "Deletion cancelled.\n";
                 }
                 break;
             }
 
-
-            case 4: {
+            case 4: { // Add Cargo
                 string id, city;
-                int time;
+                int time, groupSize;
 
                 while (true) {
                     cout << "Enter Cargo ID: ";
                     getline(cin, id);
 
-                    // Check if Cargo ID already exists
                     if (cargoManager.existsByID(id)) {
-                        cout << "Cargo ID already exists! Please enter a new ID." << endl;
+                        cout << "Cargo ID already exists! Please enter a new ID.\n";
                     }
                     else {
-                        cout << "Enter City: "; getline(cin, city);
-                        cout << "Enter Time (e.g. 0930): "; cin >> time;
+                        cout << "Enter City: ";
+                        getline(cin, city);
 
-                        // Validate time format (basic check for a 4-digit number)
+                        cout << "Enter Time (e.g. 0930): ";
+                        cin >> time;
+
+                        cout << "Enter Group Size (1-10): ";
+                        cin >> groupSize;
+                        cin.ignore();
+
                         if (time < 0 || time > 2359) {
-                            cout << "Invalid time format!" << endl;
+                            cout << "Invalid time format!\n";
+                        }
+                        else if (groupSize < 1 || groupSize > 10) {
+                            cout << "Invalid group size! Must be between 1 and 10.\n";
                         }
                         else {
-                            cargoManager.add(Cargo(id, city, time));
+                            cargoManager.add(Cargo(id, city, time, groupSize));
                             cout << "Cargo added successfully.\n";
-                            break;  // Exit the loop after successfully adding the cargo
+                            break;
                         }
                     }
                 }
@@ -209,53 +231,60 @@ int main() {
 
             case 5: { // Edit Cargo
                 string id;
-                cout << "Enter Cargo ID to edit: "; getline(cin, id);
+                cout << "Enter Cargo ID to edit: ";
+                getline(cin, id);
 
-                // Loop until a valid Cargo ID is entered
                 while (!cargoManager.existsByID(id)) {
                     cout << "Invalid Cargo ID! Please enter a valid Cargo ID: ";
                     getline(cin, id);
                 }
 
-                // Proceed with editing
                 string newCity;
-                int newTime;
-                cout << "Enter New City: "; getline(cin, newCity);
-                cout << "Enter New Time: "; cin >> newTime;
+                int newTime, newGroupSize;
 
-                // Validate time format (basic check for a 4-digit number)
+                cout << "Enter New City: ";
+                getline(cin, newCity);
+
+                cout << "Enter New Time: ";
+                cin >> newTime;
+
+                cout << "Enter New Group Size (1-10): ";
+                cin >> newGroupSize;
+                cin.ignore();
+
                 if (newTime < 0 || newTime > 2359) {
-                    cout << "Invalid time format!" << endl;
+                    cout << "Invalid time format!\n";
+                }
+                else if (newGroupSize < 1 || newGroupSize > 10) {
+                    cout << "Invalid group size!\n";
                 }
                 else {
-                    cargoManager.edit(id, Cargo(id, newCity, newTime));
+                    cargoManager.edit(id, Cargo(id, newCity, newTime, newGroupSize));
                     cout << "Cargo edited successfully.\n";
                 }
                 break;
             }
 
-
             case 6: { // Delete Cargo
                 string id;
-                cout << "Enter Cargo ID to delete: "; getline(cin, id);
+                cout << "Enter Cargo ID to delete: ";
+                getline(cin, id);
 
-                // Loop until a valid Cargo ID is entered
                 while (!cargoManager.existsByID(id)) {
                     cout << "Invalid Cargo ID! Please enter a valid Cargo ID: ";
                     getline(cin, id);
                 }
 
-                // Confirm deletion
                 char confirm;
                 cout << "Are you sure you want to delete Cargo ID " << id << "? (y/n): ";
                 cin >> confirm;
 
                 if (confirm == 'y' || confirm == 'Y') {
                     cargoManager.remove(id);
-                    cout << "Cargo " << id << " deleted successfully!" << endl;
+                    cout << "Cargo " << id << " deleted successfully!\n";
                 }
                 else {
-                    cout << "Deletion cancelled." << endl;
+                    cout << "Deletion cancelled.\n";
                 }
                 break;
             }
@@ -267,6 +296,7 @@ int main() {
 
             break;
         }
+
 
         case 4: {
             scheduleManager.generateSchedules(freightManager, cargoManager);
