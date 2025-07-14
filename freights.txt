@@ -1,14 +1,12 @@
-F01,London,0700,MiniMover
-F02,Paris,0900,MiniMover
-F03,New York,1100,CargoCruiser
-F04,Bangkok,1200,MegaCarrier
-F05,Sydney,1300,CargoCruiser
-F06,Tokyo,1400,MiniMover
-F07,London,1500,CargoCruiser
-F08,Paris,1600,MegaCarrier
-F09,Bangkok,1700,CargoCruiser
-F10,Sydney,1800,MegaCarrier
-F11,London,1930,MegaCarrier
-F12,Paris,1710,CargoCruiser
-F13,New York,1130,MiniMover
-F14,Sydney,1900,MegaCarrier
+F001,New York,0900,MiniMover
+F002,New York,0915,CargoCruiser
+F003,New York,0930,MegaCarrier
+F004,New York,0945,MiniMover
+F005,Boston,1130,CargoCruiser
+F006,Boston,1145,MegaCarrier
+F007,Boston,1200,MiniMover
+F008,Chicago,1445,CargoCruiser
+F009,Chicago,1500,MegaCarrier
+F010,Chicago,1515,MiniMover
+F011,Miami,1630,CargoCruiser
+F012,Miami,1645,MegaCarrier
