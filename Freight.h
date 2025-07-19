@@ -1,4 +1,4 @@
-// Freight.h
+﻿// Freight.h
 #pragma once
 #include "TransportUnit.h"
 #include "Cargo.h"
@@ -17,8 +17,11 @@ public:
     void displayInfo() const override;
 
     string getType() const;
-    int getCapacity() const; // Converts type ? capacity
+    int getCapacity() const; // Converts type → capacity
     int getRemainingCapacity() const;
 
-    bool assignCargo(const Cargo& cargo);
+    int assignCargo(Cargo& cargo);
+    const std::vector<Cargo>& getAssignedCargos() const;
+    void clearAssignedCargos();
+
 };

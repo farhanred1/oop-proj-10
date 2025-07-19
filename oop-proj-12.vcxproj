@@ -133,9 +133,12 @@
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Freight.h" />
     <ClInclude Include="FreightManager.h" />
+    <ClInclude Include="MinFreightScheduler.h" />
+    <ClInclude Include="PriorityArrivalScheduler.h" />
     <ClInclude Include="RecordManager.h" />
     <ClInclude Include="Schedule.h" />
     <ClInclude Include="ScheduleManager.h" />
+    <ClInclude Include="Scheduler.h" />
     <ClInclude Include="TransportUnit.h" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +148,8 @@
     <ClCompile Include="Freight.cpp" />
     <ClCompile Include="FreightManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MinFreightScheduler.cpp" />
+    <ClCompile Include="PriorityArrivalScheduler.cpp" />
     <ClCompile Include="Schedule.cpp" />
     <ClCompile Include="ScheduleManager.cpp" />
     <ClCompile Include="TransportUnit.cpp" />

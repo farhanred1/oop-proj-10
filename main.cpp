@@ -2,6 +2,8 @@
 #include "FreightManager.h"
 #include "CargoManager.h"
 #include "ScheduleManager.h"
+#include "PriorityArrivalScheduler.h"
+#include "MinFreightScheduler.h"
 
 int main() {
     FreightManager freightManager;
@@ -299,20 +301,45 @@ int main() {
 
 
         case 4: {
-            scheduleManager.generateSchedules(freightManager, cargoManager);
-            int total = scheduleManager.getSize();
-            if (total == 0) {
-                cout << "No schedules generated.\n";
+            cout << "\nChoose scheduling strategy:\n";
+            cout << "  1. Prioritize on-time arrival\n";
+            cout << "  2. Minimize number of freights\n";
+            cout << "Enter your choice: ";
+
+            int strategyChoice;
+            cin >> strategyChoice;
+
+            // create strategy objects
+            PriorityArrivalScheduler priorityScheduler;
+            MinFreightScheduler minFreightScheduler;
+
+            if (strategyChoice == 1) {
+                scheduleManager.setScheduler(&priorityScheduler);
+                cout << "\nUsing: Priority Arrival Scheduler\n";
+            }
+            else if (strategyChoice == 2) {
+                scheduleManager.setScheduler(&minFreightScheduler);
+                cout << "\nUsing: Minimize Freights Scheduler\n";
             }
             else {
-                for (int i = 0; i < total; ++i) {
-                    cout << "Schedule " << i + 1 << endl;
-                    scheduleManager.getByIndex(i).displaySchedule();
-                    cout << endl;
-                }
+                cout << "Invalid choice. Defaulting to Priority Arrival Scheduler.\n";
+                scheduleManager.setScheduler(&priorityScheduler);
             }
+
+            scheduleManager.generateSchedules(freightManager, cargoManager);
+
+            int total = scheduleManager.getSize();
+            if (total == 0) {
+                cout << "\nNo schedules generated.\n";
+            }
+            else {
+                cout << "\nGenerated Schedules (" << total << "):\n";
+                scheduleManager.displaySchedules();
+            }
+
             break;
         }
+
 
         case 5: {
             cout << "\n--- Unmatched Freights ---\n";

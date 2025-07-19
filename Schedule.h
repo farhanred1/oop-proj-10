@@ -6,19 +6,19 @@
 class Schedule {
 private:
     Freight freight;
-    Cargo cargo;
+    std::vector<Cargo> cargos;
 
 public:
     // Constructor declaration
-    Schedule(const Freight& f, const Cargo& c);
+    Schedule(const Freight& f, const std::vector<Cargo>& c);
 
     // Setters
     void setFreight(const Freight& f);
-    void setCargo(const Cargo& c);
+    void setCargos(const std::vector<Cargo>& c);
     
     // Getters
     Freight getFreight() const;
-    Cargo getCargo() const;
+    std::vector<Cargo> getCargos() const;
 
     // Display method
     void displaySchedule() const;

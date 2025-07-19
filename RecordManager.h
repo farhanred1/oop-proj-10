@@ -49,4 +49,10 @@ public:
         return static_cast<int>(records.size());
     }
 
+    auto begin() { return records.begin(); }
+    auto end() { return records.end(); }
+
+    auto begin() const { return records.begin(); }
+    auto end() const { return records.end(); }
+
 };
