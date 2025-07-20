@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="App.h" />
     <ClInclude Include="Cargo.h" />
     <ClInclude Include="CargoManager.h" />
     <ClInclude Include="FileManager.h" />
@@ -142,6 +143,7 @@
     <ClInclude Include="TransportUnit.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="App.cpp" />
     <ClCompile Include="Cargo.cpp" />
     <ClCompile Include="CargoManager.cpp" />
     <ClCompile Include="FileManager.cpp" />
