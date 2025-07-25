@@ -6,7 +6,6 @@
 // Constructor definition
 Freight::Freight(const string& id, const string& city, int time, const string& type)
     : TransportUnit(id, city, time), type(type) {
-    // Additional Freight-specific initialization (if any)
 }
 
 // Display Info
@@ -57,7 +56,7 @@ int Freight::assignCargo(Cargo& cargo) {
     int assigned = std::min(available, needed);
 
     if (assigned <= 0) {
-        std::cout << "[DEBUG] Freight " << getID() << " has no capacity left.\n";
+        /*std::cout << "[DEBUG] Freight " << getID() << " has no capacity left.\n";*/
         return 0;
     }
 
@@ -69,18 +68,17 @@ int Freight::assignCargo(Cargo& cargo) {
 
     cargo.setGroupSize(needed - assigned);
 
-    std::cout << "[DEBUG] Assigned " << assigned
+    /*std::cout << "[DEBUG] Assigned " << assigned
         << " units of Cargo " << cargo.getID()
         << " to Freight " << getID()
         << ". Remaining capacity: " << getRemainingCapacity()
-        << ", Cargo remaining: " << cargo.getGroupSize() << "\n";
+        << ", Cargo remaining: " << cargo.getGroupSize() << "\n";*/
 
     return assigned;
 }
 
 const std::vector<Cargo>& Freight::getAssignedCargos() const {
     return assignedCargos;
-    // MUST REMOVE - VIOLETS ENCAPSULATION
 }
 void Freight::clearAssignedCargos() {
     assignedCargos.clear();
