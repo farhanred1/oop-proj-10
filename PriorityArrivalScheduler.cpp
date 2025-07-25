@@ -1,14 +1,11 @@
 ﻿// PriorityArrivalScheduler.cpp
+// Author: Farhan
 #include "PriorityArrivalScheduler.h"
 #include "Schedule.h"
 #include "ScheduleManager.h"
 #include "Freight.h"
 #include <iostream>
 #include <algorithm>
-
-// TO DO
-// Refactor logic to allow cargo with earlier time to be in first
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 // Checks if the freight is eligible to carry this cargo
 static bool canAssign(Freight& freight, Cargo& cargo, ScheduleManager& scheduleMgr) {
@@ -33,7 +30,7 @@ static bool canAssign(Freight& freight, Cargo& cargo, ScheduleManager& scheduleM
 
     return true;
 }
-
+// Author: Farhan
 void PriorityArrivalScheduler::generateSchedules(
     FreightManager& freightMgr,
     CargoManager& cargoMgr,

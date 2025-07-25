@@ -5,6 +5,7 @@
 // Constructor
 CargoManager::CargoManager() {}
 
+// Author: Alastair Gillyson Lamiao Madrid
 void CargoManager::loadFromCSV(const std::string& path) {
     auto rows = FileManager::loadCSV(path);
     for (const auto& row : rows) {

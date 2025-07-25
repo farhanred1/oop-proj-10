@@ -1,8 +1,9 @@
+// Author: Myat Htun
 // Cargo.cpp
 #include "Cargo.h"
 #include <iomanip>
 
-// Constructor definition
+// Constructor definition 
 Cargo::Cargo(const string& id, const string& city, int time, int groupSize)
     : TransportUnit(id, city, time), groupSize(groupSize) {
 }
@@ -16,3 +17,4 @@ void Cargo::displayInfo() const {
 
 int Cargo::getGroupSize() const { return groupSize; }
 void Cargo::setGroupSize(int size) { groupSize = size; }
+// Author: Myat Htun

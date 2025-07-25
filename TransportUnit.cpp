@@ -1,4 +1,5 @@
 // TransportUnit.cpp
+//Author: Muhammad Rizqin Bin Rizwan
 #include "TransportUnit.h"
 
 // Constructor definition
@@ -30,3 +31,4 @@ void TransportUnit::setCity(const string& city) {
 void TransportUnit::setTime(int time) {
     this->time = time;
 }
+//Author: Muhammad Rizqin Bin Rizwan

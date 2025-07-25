@@ -1,4 +1,5 @@
 ﻿// MinFreightScheduler.cpp
+// Author: Myat Htun
 #include "MinFreightScheduler.h"
 #include "Schedule.h"
 #include "ScheduleManager.h"
@@ -29,6 +30,8 @@ static bool canAssign(Freight& freight, Cargo& cargo, ScheduleManager& scheduleM
     return true;
 }
 
+
+// Author: Myat Htun
 void MinFreightScheduler::generateSchedules(
     FreightManager& freightMgr,
     CargoManager& cargoMgr,
@@ -106,3 +109,4 @@ void MinFreightScheduler::generateSchedules(
 
     std::cout << "\n[INFO] Minimum Freight Scheduling complete.\n";
 }
+// Author: Myat Htun

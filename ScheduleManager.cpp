@@ -1,4 +1,5 @@
 // ScheduleManager.cpp
+// Author: Muhammad Rais Bin Sani
 #include "ScheduleManager.h"
 #include "FileManager.h"
 #include "Scheduler.h"
@@ -104,7 +105,10 @@ void ScheduleManager::displaySchedules() const {
         s.displaySchedule();
     }
 }
+// Author: Muhammad Rais Bin Sani
 
+
+// Author: Farhan
 int ScheduleManager::calculateTimeDifference(int freightTime, int cargoTime) const {
     // Convert HHMM format to minutes
     int freightMinutes = (freightTime / 100) * 60 + (freightTime % 100);

@@ -1,4 +1,5 @@
 // FreightManager.h
+// Author: Alastair Gillyson Lamiao Madrid
 #pragma once
 #include "RecordManager.h"
 #include "Freight.h"

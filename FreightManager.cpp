@@ -5,6 +5,7 @@
 // Constructor
 FreightManager::FreightManager() {}
 
+// Author: Alastair Gillyson Lamiao Madrid
 void FreightManager::loadFromCSV(const std::string& path) {
     auto rows = FileManager::loadCSV(path);
     for (const auto& row : rows) {

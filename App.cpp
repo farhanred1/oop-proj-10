@@ -1,3 +1,4 @@
+//Author: Muhammad Rizqin Bin Rizwan
 #include "App.h"
 #include <iostream>
 using namespace std;
@@ -314,3 +315,5 @@ void App::saveSchedule() {
     scheduleManager.exportToCSV(outputPath);
     cout << "Schedules exported to " << outputPath << "\n";
 }
+
+//Author: Muhammad Rizqin Bin Rizwan

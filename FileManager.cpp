@@ -1,6 +1,9 @@
+// Author: Alastair Gillyson Lamiao Madrid
+
 #include "FileManager.h"
 #include <fstream>
 #include <sstream>
+
 
 std::vector<std::vector<std::string>> FileManager::loadCSV(const std::string& filepath) {
     std::vector<std::vector<std::string>> rows;
@@ -44,3 +47,5 @@ void FileManager::saveCSV(const std::string& filepath, const std::vector<std::ve
 
     file.close();
 }
+
+// Author: Alastair Gillyson Lamiao Madrid

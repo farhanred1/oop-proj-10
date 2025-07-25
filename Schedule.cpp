@@ -1,9 +1,11 @@
 // Schedule.cpp
 #include "Schedule.h"
-
+// Author: Muhammad Rais Bin Sani
+// 
 // Constructor definition
 Schedule::Schedule(const Freight& f, const std::vector<Cargo>& c)
     : freight(f), cargos(c) {}
+
 
 // Setters
 void Schedule::setFreight(const Freight& f) {
@@ -43,3 +45,4 @@ void Schedule::displaySchedule() const {
 
     cout << "---------------------------------------\n";
 }
+// Author: Muhammad Rais Bin Sani

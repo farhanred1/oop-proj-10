@@ -1,4 +1,5 @@
 // ScheduleManager.h
+// Author: Muhammad Rais Bin Sani
 #pragma once
 #include "Schedule.h"
 #include "FreightManager.h"

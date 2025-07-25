@@ -1,4 +1,5 @@
 // Freight.cpp
+// Author: Farhan Reduan Ahammed
 #include "Freight.h"
 #include <iomanip>
 
@@ -84,3 +85,5 @@ const std::vector<Cargo>& Freight::getAssignedCargos() const {
 void Freight::clearAssignedCargos() {
     assignedCargos.clear();
 }
+
+// Author: Farhan Reduan Ahammed

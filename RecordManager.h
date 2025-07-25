@@ -1,4 +1,5 @@
 // RecordManager.h
+// Author: Farhan Reduan Ahammed
 #pragma once
 #include <vector>
 #include <string>
@@ -9,7 +10,6 @@ protected:
     std::vector<T> records;
 
 public:
-    virtual ~RecordManager() = default;
 
     virtual void add(const T& record) {
         records.push_back(record);
